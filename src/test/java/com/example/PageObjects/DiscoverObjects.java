@@ -3,7 +3,9 @@ package com.example.PageObjects;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class DiscoverObjects {
     WebDriver driver;
@@ -14,8 +16,8 @@ public class DiscoverObjects {
     }
 
     // Xpaths:
-    By splash_next = By.xpath("//*[@id='root']/div[1]/div[2]/div");
-    By explore_communities = By.xpath("//*[@id='root']/div[2]/div[2]/div[5]/div/div[2]/div[1]/a/button");
+    By splash_next = By.xpath("//*[@id='root']/div[1]/div[1]/div[3]/button[2]");
+    By explore_communities = By.xpath("//*[@id='root']/div[2]/div[2]/div[5]/div/div[2]/div[2]/div[1]/div[1]/a/button");
     By G_User_icon = By.xpath("//*[@id='root']/div[2]/div[1]/div[2]/div/img");
     By signup_icon = By.xpath("//*[@id='root']/div[2]/div[4]/div/div/h1");
     By my_feed = By.xpath("//*[@id='hoverEffect-0']/button");
@@ -23,12 +25,22 @@ public class DiscoverObjects {
     By Bookmark = By.xpath("// *[@id='dashboardListing-0']/div/div[2]/ul[2]/li/img");
     By Postcard = By.xpath("//*[@id='dashboardListing-0']/div");
     By visit_website = By.xpath("//*[@id='root']/div[2]/div[2]/div[5]/div/div[2]/div[2]/a/button");
+    By last_post = By.xpath("//*[@id='dashboardListing-9']");
+    By sendlast_post = By.xpath("//*[@id='dashboardListing-6']");
+    By cross_signup = By.xpath("//*[@id='root']/div[2]/div[4]/button");
+    By scroll_to_top = By.xpath("//*[@id='root']/div[2]/div[2]/div[5]/div/div[2]/div[2]/div[1]/div[12]/button");
+    By Bookmark_pd = By.xpath("//*[@id='root']/div[2]/div[2]/div[5]/div/div[2]/div[3]/ul[1]/span[1]/img");
+    By Like_pd = By
+            .xpath("//*[@id='root']/div[2]/div[2]/div[5]/div/div[2]/div[3]/ul[1]/span[2]/li[1]/span/span[1]/img");
+    By Dislike_pd = By
+            .xpath("//*[@id='root']/div[2]/div[2]/div[5]/div/div[2]/div[3]/ul[1]/span[2]/li[1]/span/span[2]/img");
+    By G_user_icon_pd = By.xpath("//*[@id='root']/div[2]/div[1]/div[2]/div/img");
+    By back_arrow_pd = By.xpath("//*[@id='root']/div[2]/div[1]/div[1]/div/div/button/img");
     // Methods:
 
-    // ------------------------------ Important
-    // ---------------------------------------
+    // ------------- Important -----------------
     public void dimensionss() {
-        Dimension dimension = new Dimension(290, 844);
+        Dimension dimension = new Dimension(290, 1044);
         driver.manage().window().setSize(dimension);
     }
 
@@ -38,23 +50,28 @@ public class DiscoverObjects {
                 return;
             }
         } catch (Exception e) {
-            Thread.sleep(6000);
+            Thread.sleep(9000);
             return;
         }
     }
-
-    // ------------------------------ Genral ---------------------------------------
 
     public void Splash_nextt() throws InterruptedException {
         waiiit(splash_next);
         driver.findElement(splash_next).click();
     }
 
+    // ------------- Guest User -----------------
+
     public void verify_page() throws InterruptedException {
         waiiit(explore_communities);
         word = driver.findElement(explore_communities).getText();
         System.out.println(word);
         Assert.assertEquals("Explore Communities", word);
+    }
+
+    public void click_explore_communities() throws InterruptedException {
+        waiiit(explore_communities);
+        driver.findElement(explore_communities).click();
     }
 
     public void click_G_user_icon() throws InterruptedException {
@@ -98,6 +115,37 @@ public class DiscoverObjects {
         word = driver.findElement(visit_website).getText();
         System.out.println(word);
         Assert.assertEquals("Visit Website", word);
+    }
+
+    public void scroll() throws InterruptedException {
+        waiiit(last_post);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        WebElement element = driver.findElement(last_post);
+        js.executeScript("arguments[0].scrollIntoView();", element);
+    }
+
+    public void scroller() throws InterruptedException {
+        waiiit(sendlast_post);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        WebElement element = driver.findElement(sendlast_post);
+        js.executeScript("arguments[0].scrollIntoView();", element);
+    }
+
+    public void verify_signup_post() throws InterruptedException {
+        waiiit(signup_icon);
+        word = driver.findElement(signup_icon).getAccessibleName();
+        System.out.println(word);
+        Assert.assertEquals("Please sign up to view more posts", word);
+    }
+
+    public void click_cross_signup() throws InterruptedException {
+        waiiit(cross_signup);
+        driver.findElement(cross_signup).click();
+    }
+
+    public void click_scroll_to_top() throws InterruptedException {
+        waiiit(scroll_to_top);
+        driver.findElement(scroll_to_top).click();
     }
 
 }
