@@ -5,8 +5,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
 import com.example.PageObjects.Communities;
+import com.example.PageObjects.CommunityDetail;
 import com.example.PageObjects.DiscoverObjects;
 import com.example.PageObjects.PostDetail;
+import com.example.PageObjects.Search;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -85,22 +87,22 @@ public class Guest_User {
         DiscoverObjects ds = new DiscoverObjects(driver);
         ds.Splash_nextt();
         ds.dimensionss();
-        ds.scroll();
+        ds.scroll_last_post();
         ds.verify_signup_post();
         quit();
     }
 
-    @Test(priority = 7)
-    public void Verify_scroll_to_top() throws InterruptedException {
-        setup();
-        DiscoverObjects ds = new DiscoverObjects(driver);
-        ds.Splash_nextt();
-        ds.dimensionss();
-        ds.scroller();
-        ds.click_scroll_to_top();
-        ds.verify_page();
-        quit();
-    }
+    // @Test(priority = 7)
+    // public void Verify_scroll_to_top() throws InterruptedException {
+    // setup();
+    // DiscoverObjects ds = new DiscoverObjects(driver);
+    // ds.Splash_nextt();
+    // ds.dimensionss();
+    // ds.scroller();
+    // ds.click_scroll_to_top();
+    // ds.verify_page();
+    // quit();
+    // }
 
     // -------------- Post Detail screen -------------
     @Test(priority = 8)
@@ -195,7 +197,7 @@ public class Guest_User {
     }
 
     @Test(priority = 15)
-    public void Verify_Click_categories() throws InterruptedException {
+    public void Verify_Click_categories_open_filter() throws InterruptedException {
         setup();
         DiscoverObjects ds = new DiscoverObjects(driver);
         Communities cl = new Communities(driver);
@@ -208,7 +210,7 @@ public class Guest_User {
     }
 
     @Test(priority = 16)
-    public void Verify_search_category() throws InterruptedException {
+    public void Verify_search_category_on_filter() throws InterruptedException {
         setup();
         DiscoverObjects ds = new DiscoverObjects(driver);
         Communities cl = new Communities(driver);
@@ -221,7 +223,7 @@ public class Guest_User {
     }
 
     @Test(priority = 17)
-    public void Verify_unselect_all_categories() throws InterruptedException {
+    public void Verify_unselect_all_categories_filter() throws InterruptedException {
         setup();
         DiscoverObjects ds = new DiscoverObjects(driver);
         Communities cl = new Communities(driver);
@@ -236,7 +238,7 @@ public class Guest_User {
     }
 
     @Test(priority = 18)
-    public void Veify_selected_category_from_filter() throws InterruptedException {
+    public void Verify_selected_category_from_filter() throws InterruptedException {
         setup();
         DiscoverObjects ds = new DiscoverObjects(driver);
         Communities cl = new Communities(driver);
@@ -250,4 +252,137 @@ public class Guest_User {
         cl.verify_selected_category();
         quit();
     }
+
+    @Test(priority = 19)
+    public void Verify_Pagination_community_listing() throws InterruptedException {
+        setup();
+        DiscoverObjects ds = new DiscoverObjects(driver);
+        Communities cl = new Communities(driver);
+        CommunityDetail cd = new CommunityDetail(driver);
+        ds.Splash_nextt();
+        ds.dimensionss();
+        ds.click_explore_communities();
+        cl.Open_community_pagination();
+        cd.click_back_arrow();
+        cl.verify_pagination();
+        quit();
+    }
+
+    @Test(priority = 20)
+    public void Verify_open_search() throws InterruptedException {
+        setup();
+        DiscoverObjects ds = new DiscoverObjects(driver);
+        Communities cl = new Communities(driver);
+        Search s = new Search(driver);
+        ds.Splash_nextt();
+        ds.dimensionss();
+        ds.click_explore_communities();
+        cl.click_search();
+        s.verify_open_search_all();
+        quit();
+    }
+
+    // -------------- Search screen -------------
+    @Test(priority = 21)
+    public void Verify_searching() throws InterruptedException {
+        setup();
+        DiscoverObjects ds = new DiscoverObjects(driver);
+        Communities cl = new Communities(driver);
+        Search s = new Search(driver);
+        ds.Splash_nextt();
+        ds.dimensionss();
+        ds.click_explore_communities();
+        cl.click_search();
+        s.search_community_all();
+        s.search_community_communities();
+        quit();
+    }
+
+    @Test(priority = 22)
+    public void Verify_view_all_on_search() throws InterruptedException {
+        setup();
+        DiscoverObjects ds = new DiscoverObjects(driver);
+        Communities cl = new Communities(driver);
+        Search s = new Search(driver);
+        ds.Splash_nextt();
+        ds.dimensionss();
+        ds.click_explore_communities();
+        cl.click_search();
+        s.click_view_all();
+        s.verify_open_search_communities();
+        quit();
+    }
+
+    @Test(priority = 23)
+    public void Verify_click_join_community() throws InterruptedException {
+        setup();
+        DiscoverObjects ds = new DiscoverObjects(driver);
+        Communities cl = new Communities(driver);
+        Search s = new Search(driver);
+        ds.Splash_nextt();
+        ds.dimensionss();
+        ds.click_explore_communities();
+        cl.click_search();
+        s.click_view_all();
+        s.click_join_communities();
+        ds.verify_signup_feed();
+        quit();
+    }
+
+    @Test(priority = 24)
+    public void Verify_open_community_from_seearch_All() throws InterruptedException {
+        setup();
+        DiscoverObjects ds = new DiscoverObjects(driver);
+        Communities cl = new Communities(driver);
+        CommunityDetail cd = new CommunityDetail(driver);
+        Search s = new Search(driver);
+        ds.Splash_nextt();
+        ds.dimensionss();
+        ds.click_explore_communities();
+        cl.click_search();
+        s.open_community_all();
+        cd.verify_screen();
+        cd.click_back_arrow();
+        s.verify_open_search_all();
+        quit();
+    }
+
+    @Test(priority = 25)
+    public void Verify_open_community_from_search_communities() throws InterruptedException {
+        setup();
+        DiscoverObjects ds = new DiscoverObjects(driver);
+        Communities cl = new Communities(driver);
+        CommunityDetail cd = new CommunityDetail(driver);
+        Search s = new Search(driver);
+        ds.Splash_nextt();
+        ds.dimensionss();
+        ds.click_explore_communities();
+        cl.click_search();
+        s.click_communities_sub();
+        s.open_community_communities();
+        cd.verify_screen();
+        cd.click_back_arrow();
+        s.verify_open_search_communities();
+        quit();
+    }
+
+    @Test(priority = 26)
+    public void Verify_pagination_search() throws InterruptedException {
+        setup();
+        DiscoverObjects ds = new DiscoverObjects(driver);
+        Communities cl = new Communities(driver);
+        CommunityDetail cd = new CommunityDetail(driver);
+        Search s = new Search(driver);
+        ds.Splash_nextt();
+        ds.dimensionss();
+        ds.click_explore_communities();
+        cl.click_search();
+        s.click_communities_sub();
+        s.open_community_pagination();
+        cd.click_back_arrow();
+        s.verify_pagination();
+        quit();
+    }
+
+    // -------------- Community Detail screen -------------
 }

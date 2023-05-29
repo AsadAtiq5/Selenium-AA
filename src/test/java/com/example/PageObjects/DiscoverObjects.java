@@ -60,6 +60,12 @@ public class DiscoverObjects {
         driver.findElement(splash_next).click();
     }
 
+    public void scroll(By scol) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        WebElement element = driver.findElement(scol);
+        js.executeScript("arguments[0].scrollIntoView();", element);
+    }
+
     // ------------- Guest User -----------------
 
     public void verify_page() throws InterruptedException {
@@ -89,6 +95,7 @@ public class DiscoverObjects {
     }
 
     public void click_my_feed() throws InterruptedException {
+        Thread.sleep(6000);
         waiiit(my_feed);
         driver.findElement(my_feed).click();
     }
@@ -117,18 +124,9 @@ public class DiscoverObjects {
         Assert.assertEquals("Visit Website", word);
     }
 
-    public void scroll() throws InterruptedException {
+    public void scroll_last_post() throws InterruptedException {
         waiiit(last_post);
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        WebElement element = driver.findElement(last_post);
-        js.executeScript("arguments[0].scrollIntoView();", element);
-    }
-
-    public void scroller() throws InterruptedException {
-        waiiit(sendlast_post);
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        WebElement element = driver.findElement(sendlast_post);
-        js.executeScript("arguments[0].scrollIntoView();", element);
+        scroll(last_post);
     }
 
     public void verify_signup_post() throws InterruptedException {

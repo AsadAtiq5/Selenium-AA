@@ -2,7 +2,9 @@ package com.example.PageObjects;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class Communities {
     WebDriver driver;
@@ -26,6 +28,7 @@ public class Communities {
     By category = By.xpath("/html/body/div[3]/div/div/div[2]/div[2]/div/label");
     By after_select_category = By
             .xpath("//*[@id='root']/div[2]/div[2]/div[5]/div/div[1]/div/div/div/div[1]/span/span[1]");
+    By pagination_community = By.xpath("//*[@id='post-10']");
 
     // -------- Important ------------
     public void waiiit(By wwt) throws InterruptedException {
@@ -37,6 +40,12 @@ public class Communities {
             Thread.sleep(9000);
             return;
         }
+    }
+
+    public void scroll(By scol) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        WebElement element = driver.findElement(scol);
+        js.executeScript("arguments[0].scrollIntoView();", element);
     }
 
     // -------- Guest User ------------
@@ -53,6 +62,7 @@ public class Communities {
     }
 
     public void click_search() throws InterruptedException {
+        Thread.sleep(3000);
         waiiit(search);
         driver.findElement(search).click();
     }
@@ -113,4 +123,21 @@ public class Communities {
         System.out.println("word = " + word);
         Assert.assertEquals("Artificial Intelligence", word);
     }
+
+    public void Open_community_pagination() throws InterruptedException {
+        Thread.sleep(5000);
+        waiiit(pagination_community);
+        scroll(pagination_community);
+        waiiit(pagination_community);
+        driver.findElement(pagination_community).click();
+    }
+
+    public void verify_pagination() throws InterruptedException {
+        waiiit(pagination_community);
+        boolean t;
+        t = driver.findElement(pagination_community).isDisplayed();
+        System.out.println(t);
+        Assert.assertEquals(t, true);
+    }
+
 }
