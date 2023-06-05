@@ -1,4 +1,4 @@
-package com.example.PageObjects;
+package com.example.pgo;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -29,6 +29,7 @@ public class Communities {
     By after_select_category = By
             .xpath("//*[@id='root']/div[2]/div[2]/div[5]/div/div[1]/div/div/div/div[1]/span/span[1]");
     By pagination_community = By.xpath("//*[@id='post-10']");
+    By community = By.xpath("//*[@id='post-0']/div/div");
 
     // -------- Important ------------
     public void waiiit(By wwt) throws InterruptedException {
@@ -140,4 +141,9 @@ public class Communities {
         Assert.assertEquals(t, true);
     }
 
+    public void open_community() throws InterruptedException {
+        Thread.sleep(4000);
+        waiiit(community);
+        driver.findElement(community).click();
+    }
 }

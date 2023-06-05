@@ -1,5 +1,6 @@
-package com.example.PageObjects;
+package com.example.pgo;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -19,6 +20,7 @@ public class PostDetail {
             .xpath("//*[@id='root']/div[2]/div[2]/div[5]/div/div[2]/div[3]/ul[1]/span[2]/li[1]/span/span[2]/img");
     By G_user_icon = By.xpath("//*[@id='root']/div[2]/div[1]/div[2]/div/img");
     By back_arrow = By.xpath("//*[@id='root']/div[2]/div[1]/div[1]/div/div/button/img");
+    By visit_website = By.xpath("//*[@id='root']/div[2]/div[2]/div[5]/div/div[2]/div[2]/a/button");
 
     // -------- Important ------------
     public void waiiit(By wwt) throws InterruptedException {
@@ -61,5 +63,13 @@ public class PostDetail {
         Thread.sleep(5000);
         waiiit(back_arrow);
         driver.findElement(back_arrow).click();
+    }
+
+    public void verify_open_pd() throws InterruptedException {
+        Thread.sleep(4000);
+        waiiit(visit_website);
+        boolean t = driver.findElement(visit_website).isDisplayed();
+        System.out.println(t);
+        Assert.assertEquals(true, t);
     }
 }

@@ -1,4 +1,4 @@
-package com.example.PageObjects;
+package com.example.pgo;
 
 import static org.junit.Assert.fail;
 
@@ -65,11 +65,12 @@ public class Search {
         String cw = "Sports";
         boolean contain_word = word.contains(cw);
         System.out.println(word);
-        if (contain_word) {
-            System.out.println("true");
-        } else {
-            fail();
-        }
+        Assert.assertEquals(true, contain_word);
+        // if (contain_word) {
+        // System.out.println("true");
+        // } else {
+        // fail();
+        // }
     }
 
     public void search_community_communities() throws InterruptedException {
@@ -82,11 +83,7 @@ public class Search {
         String cw = "Sports";
         boolean contain_word = word.contains(cw);
         System.out.println(word);
-        if (contain_word) {
-            System.out.println("true");
-        } else {
-            fail();
-        }
+        Assert.assertEquals(true, contain_word);
     }
 
     public void click_view_all() throws InterruptedException {
@@ -104,11 +101,9 @@ public class Search {
     public void verify_open_search_communities() throws InterruptedException {
         Thread.sleep(3000);
         waiiit(search_community);
-        if (driver.findElement(join_community).isDisplayed()) {
-            System.out.println(true);
-        } else {
-            fail();
-        }
+        boolean t = driver.findElement(join_community).isDisplayed();
+        System.out.println(t);
+        Assert.assertEquals(true, t);
     }
 
     public void click_join_communities() throws InterruptedException {

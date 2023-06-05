@@ -1,4 +1,4 @@
-package com.example.PageObjects;
+package com.example.pgo;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -56,6 +56,7 @@ public class DiscoverObjects {
     }
 
     public void Splash_nextt() throws InterruptedException {
+        Thread.sleep(5000);
         waiiit(splash_next);
         driver.findElement(splash_next).click();
     }
