@@ -23,6 +23,17 @@ public class CommunityDetails {
     By back_arrow_btn = By.xpath("//*[@id='root']/div[2]/div[1]/div[1]/div/div/button/img");
     By join_community_btn = By
             .xpath("//*[@id='root']/div[2]/div[2]/div[5]/div/div[2]/div[1]/div[1]/div[2]/div[1]/button");
+    By verify_community_about_sub_tab = By
+            .xpath("//*[@id='root']/div[2]/div[2]/div[5]/div/div[2]/div[1]/div[1]/div[2]/div[4]/div[1]/h2");
+    By error_toast_community_app_sub_tab = By.className("Toastify__toast");
+    By community_apps_sub_tab_btn = By.xpath("//*[@id='hoverEffect-2']/button");
+    By profile_icon_btn = By.xpath("//*[@id='root']/div[2]/div[1]/div[2]/div/img");
+    By post_sub_tab_btn = By.xpath("//*[@id='hoverEffect-0']/button");
+    By post_card = By.xpath("//*[@id='communityPosts-0']/div");
+    By bookmark_btn = By.xpath("//*[@id='communityPosts-0']/ul/span[1]");
+    By like_btn = By.xpath("//*[@id='communityPosts-0']/ul/span[2]/li[1]/span/span[1]/img");
+    By dislike_btn = By.xpath("//*[@id='communityPosts-0']/ul/span[2]/li[1]/span/span[2]/img");
+    By last_post = By.xpath("//*[@id='communityPosts-2']");
 
     // --------- Genral ---------
     // wait untill the element is found
@@ -53,5 +64,82 @@ public class CommunityDetails {
         t = driver.findElement(join_community_btn).isDisplayed();
         System.out.println(t);
         Assert.assertEquals(true, t);
+    }
+
+    // Verify community about sub tab is opened
+    public void verify_community_about_sub_tab() throws InterruptedException {
+        waiiit(verify_community_about_sub_tab);
+        word = driver.findElement(verify_community_about_sub_tab).getText();
+        System.out.println(word);
+        Assert.assertEquals("Community Info", word);
+    }
+
+    // Click community app sub tab and verify toast
+    public void click_community_app() throws InterruptedException {
+        waiiit(community_apps_sub_tab_btn);
+        driver.findElement(community_apps_sub_tab_btn).click();
+        Thread.sleep(2000);
+        t = driver.findElement(error_toast_community_app_sub_tab).isDisplayed();
+        System.out.println(t);
+        Assert.assertEquals(true, t);
+    }
+
+    // Click join community button
+    public void click_join_community_btn() throws InterruptedException {
+        waiiit(join_community_btn);
+        driver.findElement(join_community_btn).click();
+    }
+
+    // Click user profile icon button
+    public void click_profile_icon_btn() throws InterruptedException {
+        waiiit(profile_icon_btn);
+        driver.findElement(profile_icon_btn).click();
+    }
+
+    // click post sub tab button
+    public void click_post_sub_tab_btn() throws InterruptedException {
+        waiiit(post_sub_tab_btn);
+        driver.findElement(post_sub_tab_btn).click();
+    }
+
+    // verify post sub tab is opened
+    public void verify_open_post_sub_tab() throws InterruptedException {
+        waiiit(post_card);
+        t = driver.findElement(post_card).isDisplayed();
+        System.out.println(t);
+        Assert.assertEquals(true, t);
+    }
+
+    // Click post card to open post detail screen
+    public void click_post_card() throws InterruptedException {
+        waiiit(post_card);
+        driver.findElement(post_card).click();
+    }
+
+    // Click bookmark button
+    public void click_bookmark_btn() throws InterruptedException {
+        waiiit(bookmark_btn);
+        scroll(post_card);
+        driver.findElement(bookmark_btn).click();
+    }
+
+    // Click like button
+    public void click_like_btn() throws InterruptedException {
+        waiiit(like_btn);
+        scroll(post_card);
+        driver.findElement(like_btn).click();
+    }
+
+    // Click dislike button
+    public void click_dislike_btn() throws InterruptedException {
+        waiiit(dislike_btn);
+        scroll(post_card);
+        driver.findElement(dislike_btn).click();
+    }
+
+    // Scroll to the last post
+    public void scroll_to_last() throws InterruptedException {
+        waiiit(last_post);
+        scroll(last_post);
     }
 }
