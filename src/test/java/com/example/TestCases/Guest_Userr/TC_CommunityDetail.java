@@ -13,7 +13,7 @@ import com.example.PageObjects.SignupModal;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class CommunityDetailScreen {
+public class TC_CommunityDetail {
     // Objects
     WebDriver driver;
     Discover ds;
@@ -179,4 +179,22 @@ public class CommunityDetailScreen {
         sm.verify_signup_modal_text_tenth_post();
         quit();
     }
+
+    @Test(priority = 12)
+    public void verify_pagination() throws InterruptedException {
+        setup();
+        ds.click_splash_next_btn();
+        ds.set_dimensionss();
+        ds.click_explore_communities_btn();
+        cl.click_community();
+        cd.click_post_sub_tab_btn();
+        cd.scroll_to_last();
+        sm.click_cross_btn();
+        cd.click_pagination_post();
+        pd.click_back_arrow_btn();
+        sm.click_cross_btn();
+        cd.verify_pagination();
+        quit();
+    }
+
 }

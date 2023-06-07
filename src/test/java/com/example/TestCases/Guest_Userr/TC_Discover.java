@@ -11,7 +11,7 @@ import com.example.PageObjects.SignupModal;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class DiscoverInteraction {
+public class TC_Discover {
     // Objects
     WebDriver driver;
     Discover ds;

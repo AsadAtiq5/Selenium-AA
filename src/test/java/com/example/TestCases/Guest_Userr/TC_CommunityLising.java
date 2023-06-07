@@ -12,7 +12,7 @@ import com.example.PageObjects.SignupModal;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class SearchScreen {
+public class TC_CommunityLising {
     // Objects
     WebDriver driver;
     Discover ds;
@@ -44,7 +44,88 @@ public class SearchScreen {
 
     // Test Cases
     @Test(priority = 1)
-    public void verify_open_search_screen() throws InterruptedException {
+    public void verify_open_communnity_listing_screen() throws InterruptedException {
+        setup();
+        ds.click_splash_next_btn();
+        ds.set_dimensionss();
+        ds.click_explore_communities_btn();
+        cl.verify_open_community_listing();
+        quit();
+    }
+
+    @Test(priority = 2)
+    public void verify_signup_modal_text_on_clicking_join_community_btn() throws InterruptedException {
+        setup();
+        ds.click_splash_next_btn();
+        ds.set_dimensionss();
+        ds.click_explore_communities_btn();
+        cl.click_join_community_btn();
+        sm.verify_signup_modal_text_my_feed();
+        quit();
+    }
+
+    @Test(priority = 3)
+    public void verify_open_category_menu_on_clicking_more_filter_on_category_filter() throws InterruptedException {
+        setup();
+        ds.click_splash_next_btn();
+        ds.set_dimensionss();
+        ds.click_explore_communities_btn();
+        cl.click_category_on_category_filter();
+        cl.verify_open_category_filter_menu();
+        quit();
+    }
+
+    @Test(priority = 4)
+    public void verify_search_category_on_category_menu_search() throws InterruptedException {
+        setup();
+        ds.click_splash_next_btn();
+        ds.set_dimensionss();
+        ds.click_explore_communities_btn();
+        cl.click_category_on_category_filter();
+        cl.verify_searched_category_on_category_menu();
+        quit();
+    }
+
+    @Test(priority = 5)
+    public void verify_unselect_all_categories_from_category_menu() throws InterruptedException {
+        setup();
+        ds.click_splash_next_btn();
+        ds.set_dimensionss();
+        ds.click_explore_communities_btn();
+        cl.click_category_on_category_filter();
+        cl.click_all_check_box_on_category_menu();
+        cl.click_cross_btn_on_category_menu();
+        cl.verify_category_filter();
+        quit();
+    }
+
+    @Test(priority = 6)
+    public void verify_select_specific_category_from_category_menu() throws InterruptedException {
+        setup();
+        ds.click_splash_next_btn();
+        ds.set_dimensionss();
+        ds.click_explore_communities_btn();
+        cl.click_category_on_category_filter();
+        cl.click_all_check_box_on_category_menu();
+        cl.click_specific_category_from_catgory_menu();
+        cl.verify_selected_category_on_category_filter();
+        quit();
+    }
+
+    @Test(priority = 7)
+    public void verify_pagination_community_listing() throws InterruptedException {
+        setup();
+        ds.click_splash_next_btn();
+        ds.set_dimensionss();
+        ds.click_explore_communities_btn();
+        cl.click_pagination_community();
+        cd.click_back_arrow_btn();
+        cl.verify_pagination_community_displaying();
+        quit();
+    }
+
+    @Test(priority = 8)
+    public void verify_open_search_from_community_listing() throws InterruptedException {
         setup();
         ds.click_splash_next_btn();
         ds.set_dimensionss();
@@ -54,101 +135,15 @@ public class SearchScreen {
         quit();
     }
 
-    @Test(priority = 2)
-    public void verify_when_open_search_displays_all_tab_by_default() throws InterruptedException {
+    @Test(priority = 9)
+    public void verify_open_community_detail_on_clicking_community_on_community_listing() throws InterruptedException {
         setup();
         ds.click_splash_next_btn();
         ds.set_dimensionss();
         ds.click_explore_communities_btn();
-        cl.click_search_btn_on_community_listing();
-        ss.verify_all_tab_is_opened();
-        quit();
-    }
-
-    @Test(priority = 3)
-    public void verify_four_communities_displays_on_all_sub_tab() throws InterruptedException {
-        setup();
-        ds.click_splash_next_btn();
-        ds.set_dimensionss();
-        ds.click_explore_communities_btn();
-        cl.click_search_btn_on_community_listing();
-        ss.verify_four_communities();
-        quit();
-    }
-
-    @Test(priority = 4)
-    public void verify_open_communities_sub_tab_on_clicking_view_all_btn() throws InterruptedException {
-        setup();
-        ds.click_splash_next_btn();
-        ds.set_dimensionss();
-        ds.click_explore_communities_btn();
-        cl.click_search_btn_on_community_listing();
-        ss.click_view_all_btn();
-        ss.verify_communities_sub_tab_is_opened();
-        quit();
-    }
-
-    @Test(priority = 5)
-    public void verify_open_community_detail_from_all_sub_tab() throws InterruptedException {
-        setup();
-        ds.click_splash_next_btn();
-        ds.set_dimensionss();
-        ds.click_explore_communities_btn();
-        cl.click_search_btn_on_community_listing();
-        ss.click_community_on_all_sub_tab();
+        cl.click_community();
         cd.verify_open_communnity_detail_screen();
         quit();
     }
 
-    @Test(priority = 6)
-    public void verify_search_on_all_sub_tab() throws InterruptedException {
-        setup();
-        ds.click_splash_next_btn();
-        ds.set_dimensionss();
-        ds.click_explore_communities_btn();
-        cl.click_search_btn_on_community_listing();
-        ss.verify_all_tab_is_opened();
-        ss.verify_searching_community();
-        quit();
-    }
-
-    @Test(priority = 7)
-    public void verify_signup_modal_text_on_clicking_join_community_btn_on_communities_sub_tab()
-            throws InterruptedException {
-        setup();
-        ds.click_splash_next_btn();
-        ds.set_dimensionss();
-        ds.click_explore_communities_btn();
-        cl.click_search_btn_on_community_listing();
-        ss.click_communities_sub_tab_btn();
-        ss.click_join_community_btn_on_communities_sub_tab_btn();
-        sm.verify_signup_modal_text_my_feed();
-        quit();
-    }
-
-    @Test(priority = 8)
-    public void verify_search_on_communities_sub_tab() throws InterruptedException {
-        setup();
-        ds.click_splash_next_btn();
-        ds.set_dimensionss();
-        ds.click_explore_communities_btn();
-        cl.click_search_btn_on_community_listing();
-        ss.click_communities_sub_tab_btn();
-        ss.verify_searching_community();
-        quit();
-    }
-
-    @Test(priority = 9)
-    public void verify_pagination() throws InterruptedException {
-        setup();
-        ds.click_splash_next_btn();
-        ds.set_dimensionss();
-        ds.click_explore_communities_btn();
-        cl.click_search_btn_on_community_listing();
-        ss.click_communities_sub_tab_btn();
-        ss.click_pagination_community();
-        cd.click_back_arrow_btn();
-        ss.verify_pagination_community();
-        quit();
-    }
 }

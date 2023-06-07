@@ -8,7 +8,7 @@ import com.example.PageObjects.Discover;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class Landing {
+public class TC_Landing {
     // Objects
     WebDriver driver;
     Discover ds;

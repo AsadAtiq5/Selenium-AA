@@ -142,4 +142,18 @@ public class CommunityDetails {
         waiiit(last_post);
         scroll(last_post);
     }
+
+    // open pagination post
+    public void click_pagination_post() throws InterruptedException {
+        waiiit(last_post);
+        driver.findElement(last_post).click();
+    }
+
+    // verify pagination post
+    public void verify_pagination() throws InterruptedException {
+        waiiit(last_post);
+        t = driver.findElement(last_post).isDisplayed();
+        System.out.println(t);
+        Assert.assertEquals(true, t);
+    }
 }

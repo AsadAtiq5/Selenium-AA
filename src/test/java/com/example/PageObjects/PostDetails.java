@@ -21,13 +21,15 @@ public class PostDetails {
 
     // --------- Xpaths ---------
     By visit_website_btn = By.xpath("//*[@id='root']/div[2]/div[2]/div[5]/div/div[2]/div[2]/a/button");
+    By back_arrow_btn = By.xpath("//*[@id='root']/div[1]/div[1]/div[1]/div/div/button");
 
     // --------- Genral ---------
     // wait untill the element is found
-    public void waiiit(By yy) {
+    public void waiiit(By yy) throws InterruptedException {
+        Thread.sleep(4000);
         WebDriverWait webdwait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement aboutMe;
-        aboutMe = webdwait.until(ExpectedConditions.visibilityOfElementLocated(yy));
+        aboutMe = webdwait.until(ExpectedConditions.elementToBeClickable(yy));
     }
 
     // scroll into view
@@ -44,5 +46,17 @@ public class PostDetails {
         t = driver.findElement(visit_website_btn).isDisplayed();
         System.out.println(t);
         Assert.assertEquals(true, t);
+    }
+
+    // click back arrow button
+    public void click_back_arrow_btn() throws InterruptedException {
+        waiiit(back_arrow_btn);
+        driver.findElement(back_arrow_btn).click();
+    }
+
+    // click visit website button
+    public void clic_visit_website_btn() throws InterruptedException {
+        waiiit(visit_website_btn);
+        driver.findElement(visit_website_btn).click();
     }
 }
