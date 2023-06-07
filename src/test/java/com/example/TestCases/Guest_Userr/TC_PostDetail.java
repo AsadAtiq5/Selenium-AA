@@ -69,4 +69,36 @@ public class TC_PostDetail {
         quit();
     }
 
+    @Test(priority = 3)
+    public void verify_signup_modal_text_on_clicking_bookmark_btn() throws InterruptedException {
+        setup();
+        ds.click_splash_next_btn();
+        ds.set_dimensionss();
+        ds.click_post_card_discover();
+        pd.click_bookmark_btn();
+        sm.verify_signup_modal_text_my_feed();
+        quit();
+    }
+
+    @Test(priority = 4)
+    public void verify_signup_modal_text_on_clicking_like_btn() throws InterruptedException {
+        setup();
+        ds.click_splash_next_btn();
+        ds.set_dimensionss();
+        ds.click_post_card_discover();
+        pd.click_like_btn();
+        sm.verify_signup_modal_text_my_feed();
+        quit();
+    }
+
+    @Test(priority = 5)
+    public void verify_signup_modal_text_on_clicking_dislike_btn() throws InterruptedException {
+        setup();
+        ds.click_splash_next_btn();
+        ds.set_dimensionss();
+        ds.click_post_card_discover();
+        pd.click_dislike_btn();
+        sm.verify_signup_modal_text_my_feed();
+        quit();
+    }
 }
