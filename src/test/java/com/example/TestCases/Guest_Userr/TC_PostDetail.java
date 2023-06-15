@@ -101,4 +101,16 @@ public class TC_PostDetail {
         sm.verify_signup_modal_text_my_feed();
         quit();
     }
+
+    @Test(priority = 6)
+    public void verify_signup_footer_is_displaying_and_open_signup_modal_on_click() throws InterruptedException {
+        setup();
+        ds.click_splash_next_btn();
+        ds.set_dimensionss();
+        ds.click_post_card_discover();
+        pd.verify_signup_footer();
+        pd.click_signup_footer_btn();
+        sm.verify_signup_modal_text_signup_btn();
+        quit();
+    }
 }

@@ -29,6 +29,8 @@ public class PostDetails {
     By like_btn = By.xpath("//*[@id='root']/div[2]/div[2]/div[5]/div/div[2]/div[3]/ul/span[2]/li[1]/span/span[1]/img");
     By dislike_btn = By
             .xpath("//*[@id='root']/div[2]/div[2]/div[5]/div/div[2]/div[3]/ul/span[2]/li[1]/span/span[2]/img");
+    By verify_signup_footer = By.xpath("//*[@id='root']/div[2]/div[2]/div[6]");
+    By signup_footer_btn = By.xpath("//*[@id='root']/div[2]/div[2]/div[6]/div/div/button");
 
     // --------- Genral ---------
     // wait untill the element is found
@@ -77,5 +79,19 @@ public class PostDetails {
     public void click_dislike_btn() throws InterruptedException {
         waiiit(dislike_btn);
         driver.findElement(dislike_btn).click();
+    }
+
+    // Verify signup footer is visible
+    public void verify_signup_footer() throws InterruptedException {
+        waiiit(verify_signup_footer);
+        t = driver.findElement(verify_signup_footer).isDisplayed();
+        System.out.println(t);
+        Assert.assertEquals(true, t);
+    }
+
+    // click signup footer button
+    public void click_signup_footer_btn() throws InterruptedException {
+        waiiit(signup_footer_btn);
+        driver.findElement(signup_footer_btn).click();
     }
 }

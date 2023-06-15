@@ -99,4 +99,15 @@ public class TC_Discover {
         sm.verify_signup_modal_text_tenth_post();
         quit();
     }
+
+    @Test(priority = 7)
+    public void verify_signup_footer_is_displaying_and_open_signup_modal_on_click() throws InterruptedException {
+        setup();
+        ds.click_splash_next_btn();
+        ds.set_dimensionss();
+        ds.verify_signup_footer();
+        ds.click_signup_footer_btn();
+        sm.verify_signup_modal_text_signup_btn();
+        quit();
+    }
 }

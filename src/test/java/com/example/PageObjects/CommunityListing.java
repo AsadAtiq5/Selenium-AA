@@ -35,6 +35,9 @@ public class CommunityListing {
     By pagination_community = By.xpath("//*[@id='post-10']");
     By search_btn = By.xpath("//*[@id='root']/div[2]/div[1]/div[2]/button/img");
     By community = By.xpath("//*[@id='post-1']/div/div/div[1]/div[2]");
+    By verify_signup_footer = By.xpath("//*[@id='root']/div[2]/div[2]/div[6]");
+    By signup_footer_btn = By.xpath("//*[@id='root']/div[2]/div[2]/div[6]/div/div/button");
+    By side_menu_btn = By.xpath("//*[@id='root']/div[2]/div[1]/div[1]/div/button/img[1]");
 
     // --------- Genral ---------
     // wait untill the element is found
@@ -150,4 +153,23 @@ public class CommunityListing {
         driver.findElement(community).click();
     }
 
+    // Verify signup footer is visible
+    public void verify_signup_footer() throws InterruptedException {
+        waiiit(verify_signup_footer);
+        t = driver.findElement(verify_signup_footer).isDisplayed();
+        System.out.println(t);
+        Assert.assertEquals(true, t);
+    }
+
+    // click signup footer button
+    public void click_signup_footer_btn() throws InterruptedException {
+        waiiit(signup_footer_btn);
+        driver.findElement(signup_footer_btn).click();
+    }
+
+    // Click side menu
+    public void click_side_menu() throws InterruptedException {
+        waiiit(side_menu_btn);
+        driver.findElement(side_menu_btn).click();
+    }
 }

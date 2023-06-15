@@ -146,4 +146,16 @@ public class TC_CommunityLising {
         quit();
     }
 
+    @Test(priority = 10)
+    public void verify_signup_footer_is_displaying_and_open_signup_modal_on_click() throws InterruptedException {
+        setup();
+        ds.click_splash_next_btn();
+        ds.set_dimensionss();
+        ds.click_explore_communities_btn();
+        cl.verify_signup_footer();
+        cl.click_signup_footer_btn();
+        sm.verify_signup_modal_text_signup_btn();
+        quit();
+    }
+
 }

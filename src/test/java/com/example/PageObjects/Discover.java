@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class Discover {
     WebDriver driver;
     String word;
+    boolean t;
 
     public Discover(WebDriver driver) {
         this.driver = driver;
@@ -30,6 +31,9 @@ public class Discover {
     By bookmark_btn = By.xpath("//*[@id='dashboardListing-0']/div/div[2]/ul[2]/li/img");
     By tenth_post = By.xpath("//*[@id='dashboardListing-9']");
     By back_to_top_btn = By.xpath("//*[@id='root']/div[2]/div[2]/div[5]/div/div[2]/div[2]/div[1]/div[12]/button");
+    By verify_signup_footer = By.xpath("//*[@id='root']/div[2]/div[2]/div[6]");
+    By signup_footer_btn = By.xpath("//*[@id='root']/div[2]/div[2]/div[6]/div/div/button");
+    By side_menu_btn = By.xpath("//*[@id='root']/div[2]/div[1]/div[1]/div/button/img[1]");
 
     // --------- Genral ---------
     // To convert into mobile view
@@ -111,4 +115,23 @@ public class Discover {
         driver.findElement(back_to_top_btn).click();
     }
 
+    // Verify signup footer is visible
+    public void verify_signup_footer() throws InterruptedException {
+        waiiit(verify_signup_footer);
+        t = driver.findElement(verify_signup_footer).isDisplayed();
+        System.out.println(t);
+        Assert.assertEquals(true, t);
+    }
+
+    // click signup footer button
+    public void click_signup_footer_btn() throws InterruptedException {
+        waiiit(signup_footer_btn);
+        driver.findElement(signup_footer_btn).click();
+    }
+
+    // Click side menu
+    public void click_side_menu() throws InterruptedException {
+        waiiit(side_menu_btn);
+        driver.findElement(side_menu_btn).click();
+    }
 }

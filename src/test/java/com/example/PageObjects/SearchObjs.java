@@ -129,4 +129,5 @@ public class SearchObjs {
         t = driver.findElement(pagination_community).isDisplayed();
         Assert.assertEquals(true, t);
     }
+
 }
